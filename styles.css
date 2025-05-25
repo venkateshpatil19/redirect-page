@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f5f7fa;
+}
+
+.verified-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verified-card {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  text-align: center;
+  max-width: 350px;
+}
+
+.verified-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  color: #4CAF50;
+  margin-bottom: 0.5rem;
+}
+
+.login-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.5rem;
+  background: #4CAF50;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.login-link:hover {
+  background: #388e3c;
+}
