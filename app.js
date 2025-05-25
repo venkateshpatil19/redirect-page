@@ -5,14 +5,56 @@ const Welcome = () =>
     React.createElement(
       "div",
       { className: "welcome-card" },
+      // Company logo
       React.createElement("img", {
         src: "icon.png", // Ensure this file is in the same directory
         alt: "Dhanshree Constro Solutions Logo",
-        className: "welcome-image"
+        className: "welcome-image",
+        onError: function(e) {
+          e.target.style.display = 'none'; // Hide if image fails to load
+        }
       }),
+      // Main heading
       React.createElement("h1", null, "Welcome to Dhanshree Constro Solutions"),
-      React.createElement("p", null, "Registration successful. Please log in to the app.")
+      // Success message
+      React.createElement("p", null, "Registration successful. Please log in to the app."),
+      // Date stamp
+      React.createElement("small", { 
+        style: { 
+          color: "#718096", 
+          fontSize: "0.875rem", 
+          marginTop: "1rem", 
+          display: "block" 
+        } 
+      }, `Verified on ${new Date().toLocaleDateString()}`),
+      // Success indicator at bottom with pulsing animation
+      React.createElement("div", { 
+        className: "success-indicator pulsing",
+        style: {
+          marginTop: "2rem"
+        }
+      })
     )
   );
 
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(Welcome));
+// Error boundary for better user experience
+const ErrorBoundary = (props) => {
+  const [hasError, setHasError] = React.useState(false);
+  
+  if (hasError) {
+    return React.createElement("div", { 
+      style: { 
+        textAlign: "center", 
+        padding: "2rem",
+        color: "#e53e3e" 
+      } 
+    }, "Something went wrong. Please refresh the page.");
+  }
+  
+  return props.children;
+};
+
+// Render with error boundary
+ReactDOM.createRoot(document.getElementById("root")).render(
+  React.createElement(ErrorBoundary, null, React.createElement(Welcome))
+);
