@@ -1,3 +1,13 @@
+// Get verification date from URL parameters
+const getVerificationDate = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const timestamp = urlParams.get('timestamp');
+  if (timestamp) {
+    return new Date(parseInt(timestamp)).toLocaleDateString();
+  }
+  return new Date().toLocaleDateString(); // Fallback to current date
+};
+
 const Welcome = () =>
   React.createElement(
     "div",
@@ -26,7 +36,7 @@ const Welcome = () =>
           marginTop: "1rem", 
           display: "block" 
         } 
-      }, `Verified on ${new Date().toLocaleDateString()}`),
+      }, `Verified on ${getVerificationDate()}`),
       // Success indicator at bottom with pulsing animation
       React.createElement("div", { 
         className: "success-indicator pulsing",
