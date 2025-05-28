@@ -3,7 +3,15 @@ const getVerificationDate = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const timestamp = urlParams.get('timestamp');
   if (timestamp) {
-    return new Date(parseInt(timestamp)).toLocaleDateString();
+    let ts = parseInt(timestamp, 10);
+    if (isNaN(ts) || ts <= 0) {
+      return new Date().toLocaleDateString(); // fallback to current date
+    }
+    // If timestamp is in seconds (10 digits), convert to milliseconds
+    if (ts < 1000000000000) {
+      ts = ts * 1000;
+    }
+    return new Date(ts).toLocaleDateString();
   }
   return new Date().toLocaleDateString(); // Fallback to current date
 };
